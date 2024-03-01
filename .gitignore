@@ -1,0 +1,10 @@
+#-----------some ignore folder used with neovim, vscode, cland
+.clangd
+build
+.cache
+.vscode
+.local_history
+.DS_Store
+compile_commands.json
+output
+#-----------end-------------------------------------------------
