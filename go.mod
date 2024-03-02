@@ -1,4 +1,4 @@
-module uniclip
+module github.com/Sologala/iClipboard
 
 go 1.22.0
 

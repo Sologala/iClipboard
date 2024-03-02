@@ -123,6 +123,10 @@ type ResponseFile struct {
 type ResponseFiles []ResponseFile
 
 func getHandler(c *gin.Context) {
+	if ServiceFlag == false {
+		c.Status(http.StatusBadRequest)
+		return
+	}
 	var b []byte
 
 	data_type := TypeText
@@ -185,7 +189,10 @@ func setHandler(c *gin.Context) {
 	// if !Gconfig.ReserveHistory {
 	// 	cleanTempFiles()
 	// }
-
+	if ServiceFlag == false {
+		c.Status(http.StatusBadRequest)
+		return
+	}
 	contentType := c.GetHeader("X-Content-Type")
 	if contentType == TypeText {
 		setTextHandler(c)
@@ -241,6 +248,7 @@ func (f *File) Bytes() ([]byte, error) {
 }
 
 func setFileHandler(c *gin.Context) {
+
 	// contentType := c.GetHeader("X-Content-Type")
 
 	// 将发送过来的json解析到结构体上。
