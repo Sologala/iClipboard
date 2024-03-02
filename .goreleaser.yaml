@@ -12,7 +12,7 @@ builds:
     # Default: os.Environ() ++ env config section
     # Templates: allowed (since v1.14)
     env:
-      - CGO_ENABLED=0
+      - CGO_ENABLED=1
       # complex, templated envs (v1.14+):
       #
       - >-
@@ -29,9 +29,9 @@ builds:
     #
     # Default: [ 'darwin', 'linux', 'windows' ]
     goos:
-      # - windows
+      - windows
       - linux
-      # - darwin
+      - darwin
 
     # GOARCH to build for.
     # For more info refer to: https://golang.org/doc/install/source#environment
@@ -49,12 +49,12 @@ builds:
     #   # - v3
 
     # List of combinations of GOOS + GOARCH + GOARM to ignore.
-    ignore:
-      - goos: darwin
-        goarch: 386
-      - goos: linux
-        goarch: arm
-        goarm: 7
+    # ignore:
+    #   - goos: darwin
+    #     goarch: 386
+    #   - goos: linux
+    #     goarch: arm
+    #     goarm: 7
 
     # Overrides allows to override some fields for specific targets.
     # This can be specially useful when using CGO.
