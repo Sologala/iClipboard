@@ -17,11 +17,13 @@ before:
 
 builds:
   - env:
-      - CGO_ENABLED=0
+      - CGO_ENABLED=1
     goos:
       - linux
-      - windows
-      - darwin
+      # - windows
+      # - darwin
+    goarch:
+      - amd64
 
 archives:
   - format: tar.gz
@@ -37,4 +39,3 @@ archives:
     format_overrides:
       - goos: windows
         format: zip
-
