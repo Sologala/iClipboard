@@ -14,6 +14,7 @@ builds:
     env:
       - CGO_ENABLED=1
       # complex, templated envs (v1.14+):
+      #
       - >-
         {{- if eq .Os "darwin" }}
           {{- if eq .Arch "amd64"}}CC=o64-clang{{- end }}
