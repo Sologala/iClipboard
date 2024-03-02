@@ -29,7 +29,7 @@ builds:
     #
     # Default: [ 'darwin', 'linux', 'windows' ]
     goos:
-      - windows
+      # - windows
       - linux
       # - darwin
 
