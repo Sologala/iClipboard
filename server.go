@@ -96,14 +96,14 @@ func auth() gin.HandlerFunc {
 
 func logger() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		path := c.Request.URL.Path
-		start := time.Now()
+		// path := c.Request.URL.Path
+		// start := time.Now()
 		c.Next()
-		duration := time.Since(start)
-		clientIP := c.ClientIP()
-		statusCode := c.Writer.Status()
-		clientName := c.GetString("clientName")
-		log.Info().Msgf("method %s \n statusCode: %s\n clientIP %s\n path: %s\n duration %s\n clientName %s \n", c.Request.Method, statusCode, clientIP, path, duration, clientName)
+		// duration := time.Since(start)
+		// clientIP := c.ClientIP()
+		// statusCode := c.Writer.Status()
+		// clientName := c.GetString("clientName")
+		// // log.Info().Msgf("method %s \n statusCode: %s\n clientIP %s\n path: %s\n duration %s\n clientName %s \n", c.Request.Method, statusCode, clientIP, path, duration, clientName)
 	}
 }
 
