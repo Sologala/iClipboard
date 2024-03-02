@@ -1,69 +1,40 @@
-# .goreleaser.yaml
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+
+# The lines below are called `modelines`. See `:help modeline`
+# Feel free to remove those if you don't want/need to use them.
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+version: 1
+
+before:
+  hooks:
+    # You may remove this if you don't use go modules.
+    - go mod tidy
+    # you may remove this if you don't need go generate
+    - go generate ./...
+
 builds:
-  # You can have multiple builds defined as a yaml list
-  - #
-    # Custom flags.
-    #
-    # Templates: allowed
-    flags:
-      - -tags=dev
-      - -v
-
-    # Default: os.Environ() ++ env config section
-    # Templates: allowed (since v1.14)
-    env:
-      - CGO_ENABLED=1
-      # complex, templated envs (v1.14+):
-      #
-      - >-
-        {{- if eq .Os "darwin" }}
-          {{- if eq .Arch "amd64"}}CC=o64-clang{{- end }}
-          {{- if eq .Arch "arm64"}}CC=aarch64-apple-darwin20.2-clang{{- end }}
-        {{- end }}
-        {{- if eq .Os "windows" }}
-          {{- if eq .Arch "amd64" }}CC=x86_64-w64-mingw32-gcc{{- end }}
-        {{- end }}
-
-    # GOOS list to build for.
-    # For more info refer to: https://golang.org/doc/install/source#environment
-    #
-    # Default: [ 'darwin', 'linux', 'windows' ]
+  - env:
+      - CGO_ENABLED=0
     goos:
-      - windows
       - linux
+      - windows
       - darwin
 
-    # GOARCH to build for.
-    # For more info refer to: https://golang.org/doc/install/source#environment
-    #
-    # Default: [ '386', 'amd64', 'arm64' ]
-    goarch:
-      - amd64
+archives:
+  - format: tar.gz
+    # this name template makes the OS and Arch compatible with the results of `uname`.
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    # use zip for windows archives
+    format_overrides:
+      - goos: windows
+        format: zip
 
-    # GOAMD64 to build when GOARCH is amd64.
-    # For more info refer to: https://golang.org/doc/install/source#environment
-    #
-    # Default: [ 'v1' ]
-    # goamd64:
-    #   - v2
-    #   # - v3
-
-    # List of combinations of GOOS + GOARCH + GOARM to ignore.
-    # ignore:
-    #   - goos: darwin
-    #     goarch: 386
-    #   - goos: linux
-    #     goarch: arm
-    #     goarm: 7
-
-    # Overrides allows to override some fields for specific targets.
-    # This can be specially useful when using CGO.
-    # Note: it'll only match if the full target matches.
-    #
-    # Since: v1.5
-    # overrides:
-    #   - goos: darwin
-    #     goarch: arm64
-    #     goamd64: v1
-    #     env:
-    #       - CGO_ENABLED=1
