@@ -1,0 +1,68 @@
+# .goreleaser.yaml
+builds:
+  # You can have multiple builds defined as a yaml list
+  - #
+    # Custom flags.
+    #
+    # Templates: allowed
+    flags:
+      - -tags=dev
+      - -v
+
+    # Default: os.Environ() ++ env config section
+    # Templates: allowed (since v1.14)
+    env:
+      - CGO_ENABLED=0
+      # complex, templated envs (v1.14+):
+      - >-
+        {{- if eq .Os "darwin" }}
+          {{- if eq .Arch "amd64"}}CC=o64-clang{{- end }}
+          {{- if eq .Arch "arm64"}}CC=aarch64-apple-darwin20.2-clang{{- end }}
+        {{- end }}
+        {{- if eq .Os "windows" }}
+          {{- if eq .Arch "amd64" }}CC=x86_64-w64-mingw32-gcc{{- end }}
+        {{- end }}
+
+    # GOOS list to build for.
+    # For more info refer to: https://golang.org/doc/install/source#environment
+    #
+    # Default: [ 'darwin', 'linux', 'windows' ]
+    goos:
+      - windows
+      - linux
+      - darwin
+
+    # GOARCH to build for.
+    # For more info refer to: https://golang.org/doc/install/source#environment
+    #
+    # Default: [ '386', 'amd64', 'arm64' ]
+    goarch:
+      - amd64
+
+    # GOAMD64 to build when GOARCH is amd64.
+    # For more info refer to: https://golang.org/doc/install/source#environment
+    #
+    # Default: [ 'v1' ]
+    goamd64:
+      - v2
+      - v3
+
+    # List of combinations of GOOS + GOARCH + GOARM to ignore.
+    ignore:
+      - goos: darwin
+        goarch: 386
+      - goos: linux
+        goarch: arm
+        goarm: 7
+
+    # Overrides allows to override some fields for specific targets.
+    # This can be specially useful when using CGO.
+    # Note: it'll only match if the full target matches.
+    #
+    # Since: v1.5
+    overrides:
+      - goos: darwin
+        goarch: arm64
+        goamd64: v1
+        env:
+          - CGO_ENABLED=1
