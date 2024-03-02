@@ -19,6 +19,10 @@ iClipboard provides LAN clipboard sharing between Linux and IOS, and does not re
 1. download [executable](https://github.com/Sologala/iClipboard/releases) 
 2. unzip and run `./iClipboard`. 
 
+you will see a tray logo in tray bar.
+
+<img src="./resources/demo.jpg" height = "200" alt="图片名称" align=center />
+
 
 ## IOS
 ### For iOS users
