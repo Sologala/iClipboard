@@ -1,7 +1,7 @@
 # iClipboard
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Sologala/iClipboard/master/resources/clipboard.png" height = "300" style="display: inline-block; vertical-align: middle;">
+  <img src="https://raw.githubusercontent.com/Sologala/iClipboard/master/resources/clipboard.png" height = "150" style="display: inline-block; vertical-align: middle;">
   <h1 style="display: inline-block; vertical-align: middle;">iClipboard</h1>
 </div>
 
@@ -46,7 +46,7 @@ here is a example.
 2. paste in linux.
 
 
-# Credits
+# Ref
 > https://github.com/YanxinTang/clipboard-online
 
 > the difference between `iClipboard` and `clipboard-online` is that former provide linux local clipboard shareing and the latter is only for windows platform. 
