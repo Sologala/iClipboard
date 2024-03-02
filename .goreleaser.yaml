@@ -12,7 +12,7 @@ builds:
     # Default: os.Environ() ++ env config section
     # Templates: allowed (since v1.14)
     env:
-      - CGO_ENABLED=0
+      - CGO_ENABLED=1
       # complex, templated envs (v1.14+):
       - >-
         {{- if eq .Os "darwin" }}
@@ -45,7 +45,7 @@ builds:
     # Default: [ 'v1' ]
     goamd64:
       - v2
-      - v3
+      # - v3
 
     # List of combinations of GOOS + GOARCH + GOARM to ignore.
     ignore:
