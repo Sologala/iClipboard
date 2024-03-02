@@ -1,7 +1,7 @@
 # iClipboard
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Sologala/iClipboard/master/resources/clipboard.png" style="display: inline-block; vertical-align: middle;">
+  <img src="https://raw.githubusercontent.com/Sologala/iClipboard/master/resources/clipboard.png" height = "300" style="display: inline-block; vertical-align: middle;">
   <h1 style="display: inline-block; vertical-align: middle;">iClipboard</h1>
 </div>
 
