@@ -7,7 +7,6 @@ builds:
       # - darwin
     goarch:
       - amd64
-      - arm64
 dockers:
 - image_templates: ["ghcr.io/goreleaser/example:{{ .Version }}"]
   dockerfile: Dockerfile
