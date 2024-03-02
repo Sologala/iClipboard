@@ -44,9 +44,9 @@ builds:
     # For more info refer to: https://golang.org/doc/install/source#environment
     #
     # Default: [ 'v1' ]
-    goamd64:
-      - v2
-      # - v3
+    # goamd64:
+    #   - v2
+    #   # - v3
 
     # List of combinations of GOOS + GOARCH + GOARM to ignore.
     ignore:
