@@ -30,7 +30,7 @@ builds:
     goos:
       - windows
       - linux
-      - darwin
+      # - darwin
 
     # GOARCH to build for.
     # For more info refer to: https://golang.org/doc/install/source#environment
@@ -60,9 +60,9 @@ builds:
     # Note: it'll only match if the full target matches.
     #
     # Since: v1.5
-    overrides:
-      - goos: darwin
-        goarch: arm64
-        goamd64: v1
-        env:
-          - CGO_ENABLED=1
+    # overrides:
+    #   - goos: darwin
+    #     goarch: arm64
+    #     goamd64: v1
+    #     env:
+    #       - CGO_ENABLED=1
