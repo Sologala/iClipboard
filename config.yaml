@@ -1,0 +1,3 @@
+port: "8086"
+authkey: ""
+authkey_expired_timeout: 30
