@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"crypto/md5"
 	"encoding/base64"
 	"encoding/hex"
@@ -130,9 +131,9 @@ func getHandler(c *gin.Context) {
 	var b []byte
 
 	data_type := TypeText
-	b = clipboard.Read(clipboard.FmtText)
-	if b == nil {
-		b = clipboard.Read(clipboard.FmtImage)
+	b, err := clipboard.Read(context.Background(), clipboard.FmtText)
+	if err != nil {
+		b, _ = clipboard.Read(context.Background(), clipboard.FmtImage)
 		data_type = TypeBitmap
 	}
 
@@ -210,7 +211,7 @@ func setTextHandler(c *gin.Context) {
 		return
 	}
 
-	clipboard.Write(clipboard.FmtText, []byte(body.Text))
+	clipboard.Write(context.Background(), clipboard.FmtText, []byte(body.Text))
 
 	// if err := utils.Clipboard().SetText(body.Text); err != nil {
 	// 	log.Error().AnErr("failed to set clipboard", err)
@@ -288,7 +289,7 @@ func setFileHandler(c *gin.Context) {
 			c.Status(http.StatusBadRequest)
 			return
 		}
-		clipboard.Write(clipboard.FmtImage, fileBytes)
+		clipboard.Write(context.Background(), clipboard.FmtImage, fileBytes)
 		log.Info().Msgf("set Recived  %s  to buffer faild", file.Name)
 	}
 	c.Status(http.StatusOK)

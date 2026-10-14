@@ -1,0 +1,11 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "description": "Keep go.mod/go.sum in sync after Go module bumps",
+      "matchManagers": ["gomod"],
+      "postUpdateOptions": ["gomodTidy"]
+    }
+  ]
+}
